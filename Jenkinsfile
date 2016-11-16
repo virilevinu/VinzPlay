@@ -1,6 +1,6 @@
 node {
    
-   	stage (Set up)
+   	stage (Setup)
    		echo '*****************************Loading the Environmental Params********************************'
    		bat 'cd C:\\'
    	stage (Build){
@@ -17,7 +17,7 @@ userRemoteConfigs: [[credentialsId: '318a2548-4473-4572-b1d5-a36a6c763d2a', url:
 changelog: false, poll: false
 }
    	
-   	stage '(Test)
+   	stage (Test)
    		echo '*****************************Testing Phase********************************'
    	stage (Deploy)
    		echo '*****************************Deploy Phase********************************'
