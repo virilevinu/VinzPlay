@@ -3,9 +3,9 @@ node {
    	stage (Set up)
    		echo '*****************************Loading the Environmental Params********************************'
    		bat 'cd C:\\'
-   	stage (Build)
+   	stage (Build){
    		echo '*****************************Building the PC.war file********************************'
-   		{
+   		
    		checkout scm: [
 $class: 'GitSCM', 
 branches: [[name: "refs/tags/${gitTagToBuild}"]], 
