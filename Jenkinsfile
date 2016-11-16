@@ -1,14 +1,25 @@
 node {
    
-   	stage 'Set up'
+   	stage (Set up)
    		echo '*****************************Loading the Environmental Params********************************'
    		bat 'cd C:\\'
-   	stage 'Build'
-   		checkout([$class: 'GitSCM', branches: [[name: '*/PCFutureLine']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'b075b292-3f9f-4cf7-857b-5c186a1d5cbd', url: 'ssh://git@radcab:2222/pas/policycenter.git']]])
+   	stage (Build)
    		echo '*****************************Building the PC.war file********************************'
-   	stage 'Build'
-   		sh './myBuild.sh'
-   	stage 'Deploy'
-   		sh './myDeployment.sh'
+   		{
+   		checkout scm: [
+$class: 'GitSCM', 
+branches: [[name: "refs/tags/${gitTagToBuild}"]], 
+doGenerateSubmoduleConfigurations: true, 
+extensions: [], 
+submoduleCfg: [], 
+userRemoteConfigs: [[credentialsId: '318a2548-4473-4572-b1d5-a36a6c763d2a', url: 'ssh://git@radcab:2222/pas/policycenter.git']]
+],
+changelog: false, poll: false
+}
+   	
+   	stage '(Test)
+   		echo '*****************************Testing Phase********************************'
+   	stage (Deploy)
+   		echo '*****************************Deploy Phase********************************'
   
 }
