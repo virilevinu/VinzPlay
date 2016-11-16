@@ -1,9 +1,10 @@
 node {
    
-   	stage 'Stage 1'
-   		echo 'Hello there, shell scripts'
-   	stage 'Checkout'
-   		git url: 'https://github.com/TTFHW/jenkins_pipeline_shell_scripts.git'
+   	stage 'Set up'
+   		echo '*****************************Loading the Environmental Params********************************'
+   	stage 'Build'
+   		git url: 'https://radcab/pas/policycenter.git', branch: 'PCAGILE4_Development'
+   		echo '*****************************Building the PC.war file********************************'
    	stage 'Build'
    		sh './myBuild.sh'
    	stage 'Deploy'
